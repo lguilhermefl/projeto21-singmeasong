@@ -1,11 +1,14 @@
 import { prisma } from "../../src/database";
 import { faker } from "@faker-js/faker";
 
-export default function insert() {
-  const recommendation = {
+export function generate() {
+  return {
     name: faker.music.songName(),
     youtubeLink: "https://www.youtube.com/watch?v=z4HihGFLEdM",
   };
+}
 
-  return prisma.recommendation.create({ data: recommendation });
+export async function insert() {
+  const recommendation = generate();
+  return await prisma.recommendation.create({ data: recommendation });
 }
