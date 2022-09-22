@@ -9,7 +9,11 @@ export function generate(): CreateRecommendationData {
   };
 }
 
-export async function insert(recommendation: CreateRecommendationData) {
+export async function insert(recommendation?: CreateRecommendationData) {
+  if (!recommendation) {
+    const newRecommendation = generate();
+    return await prisma.recommendation.create({ data: newRecommendation });
+  }
   return await prisma.recommendation.create({ data: recommendation });
 }
 
