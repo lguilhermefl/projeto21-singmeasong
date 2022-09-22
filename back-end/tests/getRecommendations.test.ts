@@ -8,16 +8,9 @@ describe("GET /recommendations", () => {
     await prisma.$executeRaw`TRUNCATE TABLE recommendations RESTART IDENTITY`;
   });
 
-  it("should return 200 and an array of recommendation objects", async () => {
-    const recommendation1 = createRecommendationFactory.generate();
-    const recommendation2 = createRecommendationFactory.generate();
-
-    const createdRecommendation1 = await createRecommendationFactory.insert(
-      recommendation1
-    );
-    const createdRecommendation2 = await createRecommendationFactory.insert(
-      recommendation2
-    );
+  it("should return 200 and an array of 2 recommendation objects in ordered by id desc", async () => {
+    const createdRecommendation1 = await createRecommendationFactory.insert();
+    const createdRecommendation2 = await createRecommendationFactory.insert();
 
     const arrayCreatedRecommendations = [
       createdRecommendation2,
