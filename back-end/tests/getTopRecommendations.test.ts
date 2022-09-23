@@ -1,5 +1,4 @@
 import * as createRecommendationFactory from "./factories/createRecommendationFactory";
-import * as updateScoreFactory from "./factories/updateScoreFactory";
 import { prisma } from "../src/database";
 import app from "../src/app";
 import request from "supertest";
@@ -16,7 +15,7 @@ describe("GET /recommendations/top/:amount", () => {
     const recommendation2 = await createRecommendationFactory.insert();
 
     recommendation1.score++;
-    await updateScoreFactory.updateScore(recommendation1.id, "increment");
+    await request(app).post(`/recommendations/${recommendation1.id}/upvote`);
 
     const arrayRecommendations = [recommendation1, recommendation2];
 
