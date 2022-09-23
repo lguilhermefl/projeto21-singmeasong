@@ -21,6 +21,12 @@ describe("GET /recommendations", () => {
     expect(response.body).toStrictEqual(recommendation);
   });
 
+  it("should return 404 when recommendation id doesn't exist", async () => {
+    const response = await request(app).get("/recommendations/0");
+
+    expect(response.status).toBe(404);
+  });
+
   afterAll(async () => {
     await prisma.$disconnect();
   });
