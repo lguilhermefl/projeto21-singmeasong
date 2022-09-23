@@ -3,7 +3,7 @@ import { prisma } from "../src/database";
 import app from "../src/app";
 import request from "supertest";
 
-describe("GET /recommendations", () => {
+describe("GET /recommendations/:id", () => {
   beforeEach(async () => {
     await prisma.$transaction([
       prisma.$executeRaw`TRUNCATE TABLE "recommendations" RESTART IDENTITY`,
