@@ -28,6 +28,23 @@ describe("/POST /recommendations/:id/downvote", () => {
     expect(response.status).toBe(404);
   });
 
+  it("should remove recommendation id with previous score equals to -5 and return 404", async () => {
+    const recommendation = await createRecommendationFactory.insert();
+
+    await prisma.recommendation.update({
+      where: { id: recommendation.id },
+      data: { score: -5 },
+    });
+
+    await request(app).post(`/recommendations/${recommendation.id}/downvote`);
+
+    const response = await request(app).get(
+      `/recommendations/${recommendation.id}`
+    );
+
+    expect(response.status).toBe(404);
+  });
+
   afterAll(async () => {
     await prisma.$disconnect();
   });
