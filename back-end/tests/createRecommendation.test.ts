@@ -5,7 +5,9 @@ import request from "supertest";
 
 describe("POST /recommendations", () => {
   beforeEach(async () => {
-    await prisma.$executeRaw`TRUNCATE TABLE recommendations RESTART IDENTITY`;
+    await prisma.$transaction([
+      prisma.$executeRaw`TRUNCATE TABLE "recommendations" RESTART IDENTITY`,
+    ]);
   });
 
   it("should return 201 when a valid recommendation is sent", async () => {

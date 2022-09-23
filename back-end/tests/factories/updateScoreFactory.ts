@@ -1,6 +1,9 @@
 import { prisma } from "../../src/database";
 
-async function updateScore(id: number, operation: "increment" | "decrement") {
+export async function updateScore(
+  id: number,
+  operation: "increment" | "decrement"
+) {
   return prisma.recommendation.update({
     where: { id },
     data: {

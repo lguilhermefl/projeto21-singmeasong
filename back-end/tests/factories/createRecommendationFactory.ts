@@ -2,7 +2,7 @@ import { prisma } from "../../src/database";
 import { faker } from "@faker-js/faker";
 import { CreateRecommendationData } from "../../src/services/recommendationsService";
 
-export function generate(): CreateRecommendationData {
+export function generate() {
   return {
     name: faker.music.songName(),
     youtubeLink: "https://www.youtube.com/watch?v=z4HihGFLEdM",

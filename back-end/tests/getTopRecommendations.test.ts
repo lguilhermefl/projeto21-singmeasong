@@ -1,25 +1,29 @@
 import * as createRecommendationFactory from "./factories/createRecommendationFactory";
+import * as updateScoreFactory from "./factories/updateScoreFactory";
 import { prisma } from "../src/database";
 import app from "../src/app";
 import request from "supertest";
 
 describe("GET /recommendations/top/:amount", () => {
   beforeEach(async () => {
-    await prisma.$executeRaw`TRUNCATE TABLE recommendations RESTART IDENTITY`;
+    await prisma.$transaction([
+      prisma.$executeRaw`TRUNCATE TABLE "recommendations" RESTART IDENTITY`,
+    ]);
   });
 
   it("should return 200 and an array of 2 recommendation objects ordered by score desc", async () => {
-    const createdRecommendation1 = await createRecommendationFactory.insert();
-    const createdRecommendation2 = await createRecommendationFactory.insert();
+    const recommendation1 = await createRecommendationFactory.insert();
+    const recommendation2 = await createRecommendationFactory.insert();
 
-    const arrayCreatedRecommendations = [
-      createdRecommendation2,
-      createdRecommendation1,
-    ];
-    const response = await request(app).get("/recommendations");
+    recommendation1.score++;
+    await updateScoreFactory.updateScore(recommendation1.id, "increment");
+
+    const arrayRecommendations = [recommendation1, recommendation2];
+
+    const response = await request(app).get("/recommendations/top/2");
 
     expect(response.status).toBe(200);
-    expect(response.body).toStrictEqual(arrayCreatedRecommendations);
+    expect(response.body).toStrictEqual(arrayRecommendations);
   });
 
   afterAll(async () => {
