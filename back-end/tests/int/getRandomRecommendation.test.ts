@@ -1,7 +1,7 @@
 import * as createRecommendationFactory from "./factories/createRecommendationFactory";
-import { prisma } from "../src/database";
+import { prisma } from "../../src/database";
 import { jest } from "@jest/globals";
-import app from "../src/app";
+import app from "../../src/app";
 import request from "supertest";
 
 describe("GET /recommendations/random", () => {

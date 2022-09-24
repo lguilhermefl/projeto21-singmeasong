@@ -1,6 +1,6 @@
-import { prisma } from "../../src/database";
+import { prisma } from "../../../src/database";
 import { faker } from "@faker-js/faker";
-import { CreateRecommendationData } from "../../src/services/recommendationsService";
+import { CreateRecommendationData } from "../../../src/services/recommendationsService";
 
 export function generate() {
   return {
