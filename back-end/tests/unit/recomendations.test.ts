@@ -23,6 +23,29 @@ describe("Voucher Service", () => {
 
     await recommendationService.insert(recommendation);
 
+    expect(recommendationRepository.findByName).toBeCalled();
     expect(recommendationRepository.create).toBeCalled();
+  });
+
+  it("should upvote a recommendation", async () => {
+    const recommendation = createRecommendationFactory.generate();
+    const id = 1;
+
+    jest
+      .spyOn(recommendationService, "getById")
+      .mockImplementationOnce((): any => {});
+
+    jest
+      .spyOn(recommendationRepository, "find")
+      .mockImplementationOnce((): any => recommendation);
+
+    jest
+      .spyOn(recommendationRepository, "updateScore")
+      .mockImplementationOnce((): any => {});
+
+    await recommendationService.upvote(id);
+
+    expect(recommendationRepository.find).toBeCalled();
+    expect(recommendationRepository.updateScore).toBeCalled();
   });
 });
