@@ -65,7 +65,7 @@ describe("Recommendation Service", () => {
     expect(recommendationRepository.updateScore).toBeCalled();
   });
 
-  it("should return not found when trying to upvote a recommendation that doesn't exist", async () => {
+  it("should return not found when trying to upvote a recommendation that doesn't exist", () => {
     const { recommendation } = recommendationFactory.generate();
 
     jest
@@ -109,7 +109,7 @@ describe("Recommendation Service", () => {
     expect(recommendationRepository.remove).not.toBeCalled();
   });
 
-  it("should return not found when trying to downvote a recommendation that doesn't exist", async () => {
+  it("should return not found when trying to downvote a recommendation that doesn't exist", () => {
     const { recommendation } = recommendationFactory.generate();
 
     jest
@@ -157,5 +157,17 @@ describe("Recommendation Service", () => {
     expect(recommendationRepository.find).toBeCalled();
     expect(recommendationRepository.updateScore).toBeCalled();
     expect(recommendationRepository.remove).toBeCalled();
+  });
+
+  it("should get all recommendations", async () => {
+    const { recommendation } = recommendationFactory.generate();
+
+    jest
+      .spyOn(recommendationRepository, "findAll")
+      .mockImplementationOnce((): any => recommendation);
+
+    await recommendationService.get();
+
+    expect(recommendationRepository.findAll).toBeCalled();
   });
 });
