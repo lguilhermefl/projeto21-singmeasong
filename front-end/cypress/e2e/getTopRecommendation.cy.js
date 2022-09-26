@@ -38,4 +38,15 @@ describe("Test get top recommendations", () => {
       .should("have.text", propsToUpdate.score);
     cy.url().should("equal", "http://localhost:3000/top");
   });
+
+  it("Tests try to get top recommendations when there is no recommendation registered", () => {
+    cy.visit("http://localhost:3000/");
+
+    cy.intercept("GET", "/recommendations/top/10").as("topRecommendations");
+    cy.get('[data-cy="top"]').click();
+    cy.wait("@topRecommendations");
+
+    cy.contains("No recommendations yet! Create your own :)").should("exist");
+    cy.url().should("equal", "http://localhost:3000/top");
+  });
 });
