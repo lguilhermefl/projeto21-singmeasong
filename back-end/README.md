@@ -136,3 +136,61 @@ GET /recommendations/top/:amount
       },
     ]
 ```
+
+## 🏁 Running application
+
+This project was initialized with [npm](https://www.npmjs.com/) and written in [Node.js](https://nodejs.org/en/download/), so make sure you have the last stable version running locally.
+
+Firstly you shou've had already cloned the whole repository. If you haven't run this command in your machine's terminal:
+
+```
+git clone https://github.com/lguilhermefl/projeto21-singmeasong.git
+```
+
+After you had it cloned, open the main folder in your code editor. With the terminal opened run the following commands to install all dependencies:
+
+```
+cd back-end/
+npm i
+```
+
+To run this back-end you'll need to have Postgres installed in your machine. If you don't have it, go to this link and install:
+
+```
+https://www.postgresql.org/download/
+```
+
+After that you'll need to create your .env files. In this API we use two .env files, one for production and another for tests (.env and .env.test). You can see the .env.example and .env.test.example for examples.
+
+In order to create the database table, run this command inside the back-end folder in your terminal:
+
+```
+npx prisma migrate dev
+```
+
+If you want to run the production version, run:
+
+```
+npm run dev
+```
+
+If you want to run the integration tests, run:
+
+```
+npm run test:int
+```
+
+If you want to run the unit tests, run:
+
+```
+npm run test:unit
+```
+
+If you want to deploy this application you'll need to add two scripts to package.json file:
+
+```
+"build": "tsc && npx prisma generate && npx prisma migrate deploy",
+"start": "node dist/server.js",
+```
+
+:stop_sign: Don't forget to follow all the instructions above with the [repository](https://github.com/lguilhermefl/projeto21-singmeasong.git) that contains the application's interface to test this project.
