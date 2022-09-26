@@ -22,6 +22,7 @@ describe("Test downvote recommendation", () => {
     cy.wait("@downvoteRecommendation");
 
     cy.get('[data-cy="score"]').should("have.text", "-1");
+    cy.url().should("equal", "http://localhost:3000/");
   });
 
   it("Tests if downvote recommendation with score -5 is removed", () => {
@@ -45,5 +46,6 @@ describe("Test downvote recommendation", () => {
     cy.wait("@downvoteRecommendation");
 
     cy.contains(recommendation.name).should("not.exist");
+    cy.url().should("equal", "http://localhost:3000/");
   });
 });

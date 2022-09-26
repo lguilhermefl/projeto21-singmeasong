@@ -22,5 +22,6 @@ describe("Test upvote recommendation", () => {
     cy.wait("@upvoteRecommendation");
 
     cy.get('[data-cy="score"]').should("have.text", "1");
+    cy.url().should("equal", "http://localhost:3000/");
   });
 });

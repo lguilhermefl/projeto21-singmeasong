@@ -21,5 +21,6 @@ describe("Test create recommendation", () => {
     cy.wait("@createRecommendation");
 
     cy.contains(recommendation.name).should("be.visible");
+    cy.url().should("equal", "http://localhost:3000/");
   });
 });
