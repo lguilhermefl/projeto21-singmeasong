@@ -6,9 +6,9 @@
 </p>
 
 <p align = "center">
-  <a href="https://github.com/lguilhermefl">
+<!--   <a href="https://github.com/lguilhermefl"> -->
    <img src="https://img.shields.io/badge/author-lguilhermefl?style=flat-square" />
-                                                                                </a>
+<!--                                                                                 </a> -->
 
    <img src="https://img.shields.io/github/languages/count/lguilhermefl/projeto21-singmeasong?color=4dae71&style=flat-square" />
 
