@@ -108,4 +108,54 @@ describe("Recommendation Service", () => {
     expect(recommendationRepository.updateScore).toBeCalled();
     expect(recommendationRepository.remove).not.toBeCalled();
   });
+
+  it("should return not found when trying to downvote a recommendation that doesn't exist", async () => {
+    const { recommendation } = recommendationFactory.generate();
+
+    jest
+      .spyOn(recommendationService, "getById")
+      .mockImplementationOnce((): any => {});
+
+    jest
+      .spyOn(recommendationRepository, "find")
+      .mockImplementationOnce((): any => {});
+
+    jest
+      .spyOn(recommendationRepository, "remove")
+      .mockImplementationOnce((): any => {});
+
+    const response = recommendationService.downvote(recommendation.id);
+
+    expect(response).rejects.toEqual(errors.notFoundError());
+    expect(recommendationRepository.find).toBeCalled();
+    expect(recommendationRepository.updateScore).not.toBeCalled();
+    expect(recommendationRepository.remove).not.toBeCalled();
+  });
+
+  it("should remove a recommendation that has score smaller or equal than -5 when trying to downvote it", async () => {
+    const { recommendation } = recommendationFactory.generate();
+    recommendation.score = -6;
+
+    jest
+      .spyOn(recommendationService, "getById")
+      .mockImplementationOnce((): any => {});
+
+    jest
+      .spyOn(recommendationRepository, "find")
+      .mockImplementationOnce((): any => recommendation);
+
+    jest
+      .spyOn(recommendationRepository, "updateScore")
+      .mockImplementationOnce((): any => recommendation);
+
+    jest
+      .spyOn(recommendationRepository, "remove")
+      .mockImplementationOnce((): any => {});
+
+    await recommendationService.downvote(recommendation.id);
+
+    expect(recommendationRepository.find).toBeCalled();
+    expect(recommendationRepository.updateScore).toBeCalled();
+    expect(recommendationRepository.remove).toBeCalled();
+  });
 });
