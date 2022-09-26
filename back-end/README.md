@@ -159,7 +159,7 @@ To run this back-end you'll need to have Postgres installed in your machine. If 
 https://www.postgresql.org/download/
 ```
 
-After that you'll need to create your .env files. In this API we use two .env files, one for production and another for tests (.env and .env.test). You can see the .env.example and .env.test.example for examples.
+After that you'll need to create your .env files. In this API we use two .env files, one for production and another for tests (.env and .env.test). You can see the .env.example and .env.test.example files for examples.
 
 In order to create the database table, run this command inside the back-end folder in your terminal:
 
