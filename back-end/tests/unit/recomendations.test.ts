@@ -170,4 +170,17 @@ describe("Recommendation Service", () => {
 
     expect(recommendationRepository.findAll).toBeCalled();
   });
+
+  it("should get an amount of recommendations ordered by score", async () => {
+    const { recommendation } = recommendationFactory.generate();
+    const amount = 10;
+
+    jest
+      .spyOn(recommendationRepository, "getAmountByScore")
+      .mockImplementationOnce((): any => recommendation);
+
+    await recommendationService.getTop(amount);
+
+    expect(recommendationRepository.getAmountByScore).toBeCalled();
+  });
 });
