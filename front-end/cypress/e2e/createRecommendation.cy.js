@@ -63,4 +63,25 @@ describe("Test create recommendation", () => {
     });
     cy.url().should("equal", "http://localhost:3000/");
   });
+
+  it("Tests try to create recommendation with empty name", () => {
+    const recommendation = {
+      youtubeLink: "https://www.youtube.com/watch?v=z4HihGFLEdM",
+    };
+
+    cy.visit("http://localhost:3000/");
+
+    cy.get('[data-cy="url-create"]').type(recommendation.youtubeLink);
+
+    cy.intercept("POST", "/recommendations").as("createRecommendation");
+    cy.get('[data-cy="button-create"]').click();
+    cy.wait("@createRecommendation")
+      .its("response.statusCode")
+      .should("equal", 422);
+
+    cy.on("window:alert", (str) => {
+      expect(str).to.equal("Error creating recommendation!");
+    });
+    cy.url().should("equal", "http://localhost:3000/");
+  });
 });
