@@ -132,7 +132,7 @@ describe("Recommendation Service", () => {
     expect(recommendationRepository.remove).not.toBeCalled();
   });
 
-  it("should remove a recommendation that has score smaller or equal than -5 when trying to downvote it", async () => {
+  it("should remove a recommendation that has score less or equal than -5 when trying to downvote it", async () => {
     const { recommendation } = recommendationFactory.generate();
     recommendation.score = -6;
 
