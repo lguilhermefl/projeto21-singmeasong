@@ -183,4 +183,57 @@ describe("Recommendation Service", () => {
 
     expect(recommendationRepository.getAmountByScore).toBeCalled();
   });
+
+  it("should get a random recommendation when random is 0.7 or greater", async () => {
+    const { recommendation } = recommendationFactory.generate();
+
+    jest.spyOn(Math, "random").mockImplementationOnce((): any => 0.7);
+
+    jest
+      .spyOn(recommendationRepository, "findAll")
+      .mockImplementationOnce((): any => [recommendation]);
+
+    jest
+      .spyOn(recommendationRepository, "findAll")
+      .mockImplementationOnce((): any => [recommendation]);
+
+    await recommendationService.getRandom();
+
+    expect(recommendationRepository.findAll).toBeCalled();
+  });
+
+  it("should get a random recommendation when random is less than 0.7", async () => {
+    const { recommendation } = recommendationFactory.generate();
+
+    jest.spyOn(Math, "random").mockImplementationOnce((): any => 0.69);
+
+    jest
+      .spyOn(recommendationRepository, "findAll")
+      .mockImplementationOnce((): any => [recommendation]);
+
+    jest
+      .spyOn(recommendationRepository, "findAll")
+      .mockImplementationOnce((): any => [recommendation]);
+
+    await recommendationService.getRandom();
+
+    expect(recommendationRepository.findAll).toBeCalled();
+  });
+
+  it("should return not found when trying to get a random recommendation and there is none registered", async () => {
+    jest.spyOn(Math, "random").mockImplementationOnce((): any => 0.7);
+
+    jest
+      .spyOn(recommendationRepository, "findAll")
+      .mockImplementationOnce((): any => []);
+
+    jest
+      .spyOn(recommendationRepository, "findAll")
+      .mockImplementationOnce((): any => []);
+
+    const response = recommendationService.getRandom();
+
+    expect(response).rejects.toEqual(errors.notFoundError());
+    expect(recommendationRepository.findAll).toBeCalled();
+  });
 });
