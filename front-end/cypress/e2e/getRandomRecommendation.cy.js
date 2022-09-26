@@ -33,4 +33,17 @@ describe("Test get random recommendation", () => {
     cy.get('[data-cy="name"]').should("have.length", "1");
     cy.url().should("equal", "http://localhost:3000/random");
   });
+
+  it("Tests try to get random recommendation when there is no recommendation registered", () => {
+    cy.visit("http://localhost:3000/");
+
+    cy.intercept("GET", "/recommendations/random").as("randomRecommendation");
+    cy.get('[data-cy="random"]').click();
+    cy.wait("@randomRecommendation")
+      .its("response.statusCode")
+      .should("equal", 404);
+
+    cy.contains("Loading...").should("exist");
+    cy.url().should("equal", "http://localhost:3000/random");
+  });
 });
