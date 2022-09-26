@@ -29,3 +29,4 @@ In this repository you will find a back and front end folders and inside each on
 ## :open_book: Instructions
 
 - Instructions for back-end API: [Click here](https://github.com/lguilhermefl/projeto21-singmeasong/blob/main/back-end/README.md)
+- Instructions for front-end app: [Click here](https://github.com/lguilhermefl/projeto21-singmeasong/blob/main/front-end/README.md)
