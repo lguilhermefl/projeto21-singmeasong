@@ -15,3 +15,15 @@
 ##  :clipboard: Description
 
 This project is an application with both front and back end, where the user is able to add new YouTube video songs recommendations, uptvote it, downvote it, get a list of top song recommendations and get a random recommendation. The front end is a SPA made with React.
+In this repository you will find a back and fron end folders and inside each one there is a folder for the tests.
+
+## :computer:	 Technologies & concepts
+
+- REST APIs
+- Node.js
+- TypeScript
+- React
+- Postgres with Prisma
+- Jest, Supertest and Cypress for tests
+
+## :open_book: Guides
