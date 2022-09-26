@@ -9,7 +9,6 @@
 <a href="https://github.com/lguilhermefl">
    <img src="https://img.shields.io/badge/author-lguilhermefl-4dae71?style=flat-square" />
 </a>
-   <img src="https://img.shields.io/github/languages/count/lguilhermefl/projeto21-singmeasong/tree/main/back-end?color=4dae71&style=flat-square" />
 </p>
 
 ##  :clipboard: Description
