@@ -26,4 +26,6 @@ In this repository you will find a back and front end folders and inside each on
 - Postgres with Prisma
 - Jest, Supertest and Cypress for tests
 
-## :open_book: Guides
+## :open_book: Instructions
+
+- Instructions for back-end API: [Click here](https://github.com/lguilhermefl/projeto21-singmeasong/blob/main/back-end/README.md)
