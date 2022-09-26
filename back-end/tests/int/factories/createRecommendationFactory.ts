@@ -30,3 +30,87 @@ export function generateWithEmptyName() {
     youtubeLink: "https://www.youtube.com/watch?v=z4HihGFLEdM",
   };
 }
+
+export async function populate() {
+  await prisma.recommendation.createMany({
+    data: [
+      {
+        name: faker.music.songName(),
+        youtubeLink: "https://www.youtube.com/watch?v=z4HihGFLEdM",
+      },
+      {
+        name: faker.music.songName(),
+        youtubeLink: "https://www.youtube.com/watch?v=z4HihGFLEdM",
+      },
+      {
+        name: faker.music.songName(),
+        youtubeLink: "https://www.youtube.com/watch?v=z4HihGFLEdM",
+      },
+      {
+        name: faker.music.songName(),
+        youtubeLink: "https://www.youtube.com/watch?v=z4HihGFLEdM",
+      },
+      {
+        name: faker.music.songName(),
+        youtubeLink: "https://www.youtube.com/watch?v=z4HihGFLEdM",
+      },
+      {
+        name: faker.music.songName(),
+        youtubeLink: "https://www.youtube.com/watch?v=z4HihGFLEdM",
+      },
+      {
+        name: faker.music.songName(),
+        youtubeLink: "https://www.youtube.com/watch?v=z4HihGFLEdM",
+      },
+      {
+        name: faker.music.songName(),
+        youtubeLink: "https://www.youtube.com/watch?v=z4HihGFLEdM",
+      },
+      {
+        name: faker.music.songName(),
+        youtubeLink: "https://www.youtube.com/watch?v=z4HihGFLEdM",
+      },
+      {
+        name: faker.music.songName(),
+        youtubeLink: "https://www.youtube.com/watch?v=z4HihGFLEdM",
+      },
+      {
+        name: faker.music.songName(),
+        youtubeLink: "https://www.youtube.com/watch?v=z4HihGFLEdM",
+      },
+      {
+        name: faker.music.songName(),
+        youtubeLink: "https://www.youtube.com/watch?v=z4HihGFLEdM",
+      },
+      {
+        name: faker.music.songName(),
+        youtubeLink: "https://www.youtube.com/watch?v=z4HihGFLEdM",
+      },
+      {
+        name: faker.music.songName(),
+        youtubeLink: "https://www.youtube.com/watch?v=z4HihGFLEdM",
+      },
+      {
+        name: faker.music.songName(),
+        youtubeLink: "https://www.youtube.com/watch?v=z4HihGFLEdM",
+      },
+      {
+        name: faker.music.songName(),
+        youtubeLink: "https://www.youtube.com/watch?v=z4HihGFLEdM",
+      },
+      {
+        name: faker.music.songName(),
+        youtubeLink: "https://www.youtube.com/watch?v=z4HihGFLEdM",
+      },
+      {
+        name: faker.music.songName(),
+        youtubeLink: "https://www.youtube.com/watch?v=z4HihGFLEdM",
+      },
+      {
+        name: faker.music.songName(),
+        youtubeLink: "https://www.youtube.com/watch?v=z4HihGFLEdM",
+      },
+    ],
+    skipDuplicates: true,
+  });
+}
