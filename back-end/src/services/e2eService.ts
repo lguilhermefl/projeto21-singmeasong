@@ -7,3 +7,7 @@ export async function reset() {
 export async function update(id: number, propsToUpdate: any) {
   await e2eRepository.update(id, propsToUpdate);
 }
+
+export async function populate() {
+  await e2eRepository.populate();
+}
