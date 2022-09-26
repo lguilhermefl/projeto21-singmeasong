@@ -24,7 +24,7 @@ describe("Test create recommendation", () => {
     cy.url().should("equal", "http://localhost:3000/");
   });
 
-  it("Tests create recommendation with duplicate name", () => {
+  it("Tests try to create recommendation with duplicate name", () => {
     const recommendation = {
       name: faker.music.songName(),
       youtubeLink: "https://www.youtube.com/watch?v=z4HihGFLEdM",
@@ -42,6 +42,21 @@ describe("Test create recommendation", () => {
     cy.wait("@createRecommendation")
       .its("response.statusCode")
       .should("equal", 409);
+
+    cy.on("window:alert", (str) => {
+      expect(str).to.equal("Error creating recommendation!");
+    });
+    cy.url().should("equal", "http://localhost:3000/");
+  });
+
+  it("Tests try to create recommendation without any field filled", () => {
+    cy.visit("http://localhost:3000/");
+
+    cy.intercept("POST", "/recommendations").as("createRecommendation");
+    cy.get('[data-cy="button-create"]').click();
+    cy.wait("@createRecommendation")
+      .its("response.statusCode")
+      .should("equal", 422);
 
     cy.on("window:alert", (str) => {
       expect(str).to.equal("Error creating recommendation!");
