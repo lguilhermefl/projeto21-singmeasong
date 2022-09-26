@@ -141,7 +141,7 @@ GET /recommendations/top/:amount
 
 This project was initialized with [npm](https://www.npmjs.com/) and written in [Node.js](https://nodejs.org/en/download/), so make sure you have the last stable version running locally.
 
-Firstly you shou've had already cloned the whole repository. If you haven't run this command in your machine's terminal:
+Firstly you shou've had already cloned the whole repository. If you haven't, run this command in your machine's terminal:
 
 ```
 git clone https://github.com/lguilhermefl/projeto21-singmeasong.git
