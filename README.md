@@ -11,3 +11,7 @@
 </a>
    <img src="https://img.shields.io/github/languages/count/lguilhermefl/projeto21-singmeasong?color=4dae71&style=flat-square" />
 </p>
+
+##  :clipboard: Description
+
+This project is an application with both front and back end, where the user is able to add new YouTube video songs recommendations, uptvote it, downvote it, get a list of top song recommendations and get a random recommendation. The front end is a SPA made with React.
