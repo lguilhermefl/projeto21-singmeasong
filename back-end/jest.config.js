@@ -23,5 +23,6 @@ export default {
     "<rootDir>/src/utils",
     "<rootDir>/src/config",
     "<rootDir>/tests/int",
+    "<rootDir>/tests/unit/factories",
   ],
 };
