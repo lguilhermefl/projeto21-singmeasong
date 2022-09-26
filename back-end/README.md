@@ -26,7 +26,7 @@ This is the application's back-end. In it you'll find all the needed routes to r
 
 ## :rocket: Routes
 
-```json
+```yml
 POST /recommendations
     - Route to register a new song recommendation
     - headers: {}
