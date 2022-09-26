@@ -11,7 +11,7 @@ app.use(express.json());
 
 app.use("/recommendations", recommendationRouter);
 if (process.env.NODE_ENV === "test") {
-  app.use("/recommendations", e2eRouter);
+  app.use("/e2e", e2eRouter);
 }
 app.use(errorHandlerMiddleware);
 

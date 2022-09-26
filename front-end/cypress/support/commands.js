@@ -10,7 +10,15 @@
 //
 //
 // -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
+Cypress.Commands.add("createRecommendation", (recommendation) => {
+  cy.request(
+    "POST",
+    "http://localhost:5000/recommendations",
+    recommendation
+  ).then(() => {
+    cy.visit("http://localhost:3000/");
+  });
+});
 //
 //
 // -- This is a child command --
