@@ -65,6 +65,24 @@ describe("Recommendation Service", () => {
     expect(recommendationRepository.updateScore).toBeCalled();
   });
 
+  it("should return not found when trying to upvote a recommendation that doesn't exist", async () => {
+    const { recommendation } = recommendationFactory.generate();
+
+    jest
+      .spyOn(recommendationService, "getById")
+      .mockImplementationOnce((): any => {});
+
+    jest
+      .spyOn(recommendationRepository, "find")
+      .mockImplementationOnce((): any => {});
+
+    const response = recommendationService.upvote(recommendation.id);
+
+    expect(response).rejects.toEqual(errors.notFoundError());
+    expect(recommendationRepository.find).toBeCalled();
+    expect(recommendationRepository.updateScore).not.toBeCalled();
+  });
+
   it("should downvote a recommendation", async () => {
     const { recommendation } = recommendationFactory.generate();
 
