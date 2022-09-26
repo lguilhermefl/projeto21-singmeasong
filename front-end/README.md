@@ -26,7 +26,8 @@ This is the application's front-end. In it you'll find all the needed files to r
 ```yml
     /
     - Homepage route
-    - Shows buttons for home, top and random song recommendations in menu. You can register a new recommendation by filling name and url fields and clicking in the arrow.
+    - Shows buttons for home, top and random song recommendations in menu
+    - You can register a new recommendation by filling name and url fields and clicking in the arrow.
 ```
 <img src="https://github.com/lguilhermefl/projeto21-singmeasong/blob/main/front-end/screenshots/homepage.png" />
 
