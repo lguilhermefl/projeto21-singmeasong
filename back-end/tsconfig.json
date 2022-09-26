@@ -3,9 +3,13 @@
     "esModuleInterop": true,
     "module": "es6",
     "moduleResolution": "node",
-    "outDir": "dist"
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true
   },
   "ts-node": {
     "esm": true
-  }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }
