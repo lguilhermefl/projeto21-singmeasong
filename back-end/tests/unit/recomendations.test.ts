@@ -1,15 +1,18 @@
 import { jest } from "@jest/globals";
+import { prisma } from "../../src/database";
 import { recommendationRepository } from "../../src/repositories/recommendationRepository";
 import { recommendationService } from "../../src/services/recommendationsService";
 import * as recommendationFactory from "./factories/recommendationFactory";
 import * as errors from "../../src/utils/errorUtils";
 
-beforeEach(() => {
-  jest.resetAllMocks();
-  jest.clearAllMocks();
-});
-
 describe("Recommendation Service", () => {
+  beforeEach(async () => {
+    jest.resetAllMocks();
+    jest.clearAllMocks();
+    await prisma.$transaction([
+      prisma.$executeRaw`TRUNCATE TABLE "recommendations" RESTART IDENTITY`,
+    ]);
+  });
   it("should create a recommendation", async () => {
     const { recommendationInsert } = recommendationFactory.generate();
 
@@ -235,5 +238,9 @@ describe("Recommendation Service", () => {
 
     expect(response).rejects.toEqual(errors.notFoundError());
     expect(recommendationRepository.findAll).toBeCalled();
+  });
+
+  afterAll(async () => {
+    await prisma.$disconnect();
   });
 });
