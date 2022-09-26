@@ -27,5 +27,5 @@ This is the application's front-end. In it you'll find all the needed files to r
 /
     - Homepage route
     - Shows buttons for home, top and random recommendations in menu
-    <img src="https://github.com/lguilhermefl/projeto21-singmeasong/blob/main/front-end/screenshots/homepage.png" />
 ```
+<img src="https://github.com/lguilhermefl/projeto21-singmeasong/blob/main/front-end/screenshots/homepage.png" />
